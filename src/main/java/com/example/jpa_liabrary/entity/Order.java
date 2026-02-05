@@ -15,8 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
      
 public class Order {
-
-    @Id
+     @Id
    @GeneratedValue(strategy = GenerationType.UUID)
    private UUID id;
     private Instant orderDate = Instant.now();
