@@ -1,6 +1,7 @@
 package com.example.jpa_liabrary.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Order {
     private List<Product> product;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonIgnore
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
