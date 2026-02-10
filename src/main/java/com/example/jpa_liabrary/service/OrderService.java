@@ -34,7 +34,9 @@ public class OrderService {
 
 //post
     public Order addOrder(Order order) {
-
+        if (order == null){
+            throw new IllegalArgumentException("Order can't null");
+        }
         return orderRepo.save(order);
     }
 //delete
