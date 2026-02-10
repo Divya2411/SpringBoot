@@ -2,6 +2,8 @@ package com.example.jpa_liabrary.service;
 
 import com.example.jpa_liabrary.daO.CustomerRepo;
 import com.example.jpa_liabrary.entity.Customer;
+import com.example.jpa_liabrary.exception.InvalidCustomerEmailException;
+import com.example.jpa_liabrary.exception.InvalidCustomerFirstNameException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,15 @@ public class CustomerService {
     }
 
     public Customer addCus(Customer customer) {
+        if(customer == null){
+            throw new IllegalArgumentException("customer can't be null");
+        }if(customer.getFirstName() == null || customer.getFirstName().isEmpty()){
+            throw new InvalidCustomerFirstNameException("you must enter first Name");
+        }
+
+        if( customer.getEmail() == null || customer.getEmail().isEmpty() || customer.getEmail().length() < 5){
+            throw new InvalidCustomerEmailException("please enter correct email ");
+        }
         return customerRepo.save(customer);
     }
 

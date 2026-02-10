@@ -2,6 +2,8 @@ package com.example.jpa_liabrary.controller;
 
 import com.example.jpa_liabrary.entity.Customer;
 import com.example.jpa_liabrary.service.CustomerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +24,9 @@ public class CustomerController {
     }
 
     @PostMapping("api/customer")
-    public Customer addCustomer(@RequestBody Customer customer){
-        return customerService.addCus(customer);
+    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer){
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.addCus(customer));
     }
     @PutMapping("api/customer")
     public Customer updateCustomer(@RequestBody Customer customer){
